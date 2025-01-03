@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        body{
+            background-color: darkslategray;
+        }
+        .heading{
+            height: 80px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .timercontainerbox{
+            height: 250px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .boxcontainer{
+            height: 200px;
+            width: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        
+            color: white;
+            border: 2px solid white;
+            box-shadow: 0px 0px 25px white;
+            gap: 6px;
+        }
+         .buttons{
+            height: 70px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+         }
+         .qoute{
+            height: 80px;
+             width: 100%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         color: white;
+        }
+        
+       button{
+        height: 40px;
+        width: 70px;
+        background-color: transparent;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        
+       }
+       button:hover{
+        background-color: white;
+        color: black;
+        border: 3px solid black;
+        box-shadow: 0px 0px 10px white;
+        transition: 0.5s;
+        
+       }
+       .header:hover{
+    
+           text-shadow: 0px 0px 25px  white;
+           cursor: pointer;
+       }
+       .header{
+        color: white;
+       }
+    </style>
+
+    <div class="container">
+       <div class="heading">
+        <h1 class="header">Timer Counter</h1>
+       </div> 
+        <div class="qoute">
+       <h3> Success is not the key to happiness ,<br> happiness is the key to Success</h3>
+       </div>
+       <div class="timercontainerbox">
+
+        <div class="boxcontainer">
+            <h1 id="hours">00</h1>
+            <h1>:</h1>
+            <h1 id="mins">00</h1>
+            <h1>:</h1>
+            <h1 id="seconds">00</h1>
+            <h1>:</h1>
+            <h1 id="millis">00</h1>
+        </div>
+        </div>
+        <div class="buttons">
+            <button onclick="Start()" id="Starts">Start</button>
+            <button onclick="Stop()" id="Stops">Stop</button>
+            <button  onclick = "Reset()"id="Resets">Reset</button>
+    
+        </div>
+    
+    </div>
+ <script>
+
+     let milli   = 0;
+     let second = 0;
+     let min = 0;
+     let hour = 0;  
+
+     let timer = false
+
+     
+     function Start(){
+        timer = true;
+        myfun()
+     }function Reset(){
+        location.reload()
+     }
+
+     function Stop(){
+        timer = false;
+        myfun()
+     }
+     function myfun(){
+        if(timer == true){
+            milli = milli+1
+            if(milli == 100){
+                second = second+1;
+                milli = 0;
+            }
+            if(second == 60){
+                min = min+1;
+                second = 0;
+
+            }
+            if(min == 60){
+                hour = hour+1
+                min = 0;
+            }
+
+            let getsce = second;
+            let getmin =  min;
+            let gethr = hour;
+            if(second<10){
+                getsce = "0"+second;
+            }if(min<10){
+                getmin = "0"+min;
+            }if(gethr<10){
+                gethr = "0"+hour;
+            }
+
+            setTimeout('myfun()',10)
+            document.getElementById('millis').innerHTML = milli;
+            document.getElementById('seconds').innerHTML = getsce;
+            document.getElementById('mins').innerHTML = getmin;
+            document.getElementById('hours').innerHTML = gethr;
+
+        }
+     }
+
+    
+ </script>
+    
+</body>
+</html>
